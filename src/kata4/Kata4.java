@@ -18,6 +18,9 @@ public class Kata4 {
     private List<Mail> mailList;
     private Histogram<String> histogram;
     private static HistogramDisplay histoDisplay;
+    private static MailHistogramBuilder<Mail> builder;
+    private Histogram <String> domains;
+    private Histogram <Character> letters;
         
     private void execute() throws Exception{
         input();
@@ -26,16 +29,31 @@ public class Kata4 {
     }
     
     private void input() throws IOException{
-        filename = "/E://Kata6/emails.txt";
+        filename = "/E://Kata6/emails.txt";// 
         mailList = MailListReader.read(filename);
+        builder	=new MailHistogramBuilder<>(mailList);	
     }
     
     private void process() throws Exception{
-        histogram = MailHistogramBuilder.build(mailList);
+        domains = builder.build(new Attribute<Mail,String>(){
+           @Override
+           public String get(Mail item){
+               return item.getMail().split("@")[1];
+           }
+        });
+        //new HistogramDisplay(domains, "Dominios").execute();
+        letters = builder.build(new Attribute<Mail, Character>(){
+            @Override
+            public Character get(Mail item) {
+                return item.getMail().charAt(0);
+            }
+        });
+        //new HistogramDisplay(letters,"Primer Caracter").execute();
     }
     
     private void output(){
-        histoDisplay = new HistogramDisplay(histogram);
+        new HistogramDisplay(domains,"Dominios").execute();
+        new HistogramDisplay(letters,"Primer Caracter").execute();
         histoDisplay.execute();
     }
 }
