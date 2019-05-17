@@ -1,0 +1,14 @@
+En la práctica que hemos realizado el fin era la clasificación entre más de 30 objetos distintos que podemos encontrar en la naturaleza 
+en el día a día, para ello nos hemos válido del conocimiento adquirido en el curso de Fundamentos de los Sistemas Inteligentes
+en lo refente a redes neuronales. 
+
+En primer lugar ya que contamos con muestras escasas de imagenes en color debemos ponerlas todas entre 0 y 1 por ello dividimos los 
+elementos entre 255 (los números de la gama de colores) ademas con distintas combinaciones dejaremos todos los elementos estándarizados
+en tamaño de pixeles y mediante rotaciones generaremos "nuevas" imagenes. 
+
+Posteriormente configuramos la red de entrenamiento que se entrenará para poder clasificar para ello implementamos distintos
+números de neuronas de entrada y un número de capas ocultas que mejor resultado genere sin llegar a padecer overfitting. 
+Como neuronas en la capa de salida tenemos 30, tantas como salidas posibles pueda clasificar la red. Así mismo, empleamos
+las opciones de kernel y max pooling para aumentar el grado de detalle que puede analizar y percibir la neurona. 
+
+Por último, se adjuntan estadísticas sobre el grado de acuraccy, loss, val_acuraccy y val_loss del entrenamiento. 
